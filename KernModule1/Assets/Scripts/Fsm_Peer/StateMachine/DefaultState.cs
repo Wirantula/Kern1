@@ -27,7 +27,7 @@ public void init(StateMachine owner)
     public override void OnUpdate()
     {
         Debug.Log("Update started");
-        InitTimer();
+      //  InitTimer();
 
 
     }
@@ -36,20 +36,20 @@ public void init(StateMachine owner)
 
     }
 
-    public void InitTimer()
-    {
-        Timer timer1 = new Timer
-        {
-            Interval = 2000
-        };
-        timer1 = new System.Timers.Timer(2000);
-        timer1.Elapsed += OnTimerEvent;
-        timer1.Enabled = true;
-    }
+    //public void InitTimer()
+    //{
+    //    Timer timer1 = new Timer
+    //    {
+    //        Interval = 2000
+    //    };
+    //    timer1 = new System.Timers.Timer(2000);
+    //    timer1.Elapsed += OnTimerEvent;
+    //    timer1.Enabled = true;
+    //}
 
-    public static void OnTimerEvent(object source, EventArgs e)
-    { 
-       System.Random a = new System.Random();
-        Debug.Log(a);
-    }
+    //public static void OnTimerEvent(object source, EventArgs e)
+    //{ 
+    //   System.Random a = new System.Random();
+    //    Debug.Log(a);
+    //}
 }

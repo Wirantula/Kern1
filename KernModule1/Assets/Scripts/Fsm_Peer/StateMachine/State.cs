@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State 
+public abstract class State
 {
     //public State(StateMachine owner)
     //{
@@ -13,5 +13,6 @@ public abstract class State
     public abstract void OnUpdate();
     public abstract void OnExit();
 
-
+    public delegate bool Isfinished();
+    public Isfinished status;
 }
