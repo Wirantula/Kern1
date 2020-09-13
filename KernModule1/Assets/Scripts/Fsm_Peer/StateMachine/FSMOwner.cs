@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FSMOwner : MonoBehaviour
 {
+<<<<<<< HEAD
     EnvoirmentIdle State1;
     StateMachine voorbeeldMachine;
     void Start()
@@ -20,5 +21,21 @@ public class FSMOwner : MonoBehaviour
             voorbeeldMachine.OnUpdate();                 //update for state machine
         }
        
+=======
+    DefaultState State1;
+    StateMachine voorbeeldMachine;
+    void Start()
+    {
+        State1 = new DefaultState(voorbeeldMachine);
+        voorbeeldMachine = new StateMachine(State1);
+        voorbeeldMachine.OnStart(State1);
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        voorbeeldMachine.OnUpdate();
+>>>>>>> master
     }
 }
