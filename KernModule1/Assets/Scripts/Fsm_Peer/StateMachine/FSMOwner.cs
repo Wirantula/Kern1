@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class FSMOwner : MonoBehaviour
 {
-    DefaultState State1;
+    EnvoirmentIdle State1;
     StateMachine voorbeeldMachine;
     void Start()
     {
-        State1 = new DefaultState(voorbeeldMachine);
-        voorbeeldMachine = new StateMachine(State1);
-        voorbeeldMachine.OnStart(State1);
+        State1 = new EnvoirmentIdle(voorbeeldMachine); //create states 
+        voorbeeldMachine = new StateMachine(State1); //create statemachine
+        voorbeeldMachine.OnStart(State1);            //parse states to machine
         
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate() //50 ticks a sec
     {
-        voorbeeldMachine.OnUpdate();
+        if(Input.GetKey(KeyCode.A) == true)
+        {
+            voorbeeldMachine.OnUpdate();                 //update for state machine
+        }
+       
     }
 }
