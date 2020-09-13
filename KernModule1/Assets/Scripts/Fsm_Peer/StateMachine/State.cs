@@ -4,13 +4,9 @@ using UnityEngine;
 
 public abstract class State
 {
-<<<<<<< HEAD
     //does a state need a constructor?
     //what would u give an abstract class?
     //public State(StateMachine owner) 
-=======
-    //public State(StateMachine owner)
->>>>>>> master
     //{
     //    this.owner = owner;
     //}
