@@ -19,6 +19,7 @@ public class StateMachine
     public void OnStart(State state) //init a state
     {      
         currentstate = states[state.GetType()]; //assign given state as first state
+        currentstate.OnEnter();
     }
     public void OnUpdate() //get update method from a state
     {
