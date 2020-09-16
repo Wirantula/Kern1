@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         prefab.transform.position = new Vector3(0, 0, 0);
         GameObject playerPrefab = Instantiate(prefab, transform);
         Player p = new Player(playerPrefab);
+        EventManager.InvokeEvent(EventType.ON_STARTUP_TICK);
 
     }
 

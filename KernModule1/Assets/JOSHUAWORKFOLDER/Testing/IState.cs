@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EventType
+public interface IState
 {
-    ON_UPDATE_TICK = 0,
-    ON_STARTUP_TICK = 1
-       
+    IState RunState(Player player);
 }
