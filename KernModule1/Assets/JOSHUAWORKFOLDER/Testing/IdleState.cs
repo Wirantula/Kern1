@@ -28,6 +28,9 @@ public class IdleState : IState
 
     public void RunIdle(Player player)
     {
-
+        //if(player.jumpCoolDown > 0)
+        //{
+        //    player.jumpCoolDown -= 0.2f;
+        //}
     }
 }

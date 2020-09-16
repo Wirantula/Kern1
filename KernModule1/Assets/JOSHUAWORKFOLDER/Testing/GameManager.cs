@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject prefab;
+    [SerializeField]
+    private GameObject prefab;
 
     //initializing game
     private void Awake()
@@ -26,13 +27,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Creert update tick met event
-        EventManager.InvokeEvent(EventType.ON_UPDATE_TICK);
+        
     }
 
     //fixed update for time dependend actions
     private void FixedUpdate()
     {
-
+        //Creert update tick met event
+        EventManager.InvokeEvent(EventType.ON_UPDATE_TICK);
     }
 }

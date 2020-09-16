@@ -12,6 +12,7 @@ public class Player
     public JumpState jumpState = new JumpState();
     public MoveLeftState moveLeftState = new MoveLeftState();
     public MoveRightState moveRightState = new MoveRightState();
+    public float jumpCoolDown = 10f;
 
     private IState currentState;
 
@@ -32,23 +33,9 @@ public class Player
     public void Move()
     {
         currentState = currentState.RunState(this);
-
-        //Hacky movement, workupon
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    playerPrefab.transform.Translate(Vector3.forward * 5f * Time.deltaTime, Space.World);
-        //}
-        //else if (Input.GetKey(KeyCode.S))
-        //{
-        //    playerPrefab.transform.Translate(Vector3.back * 5f * Time.deltaTime, Space.World);
-        //}
-        //else if (Input.GetKey(KeyCode.A))
-        //{
-        //    playerPrefab.transform.Translate(Vector3.left * 5f * Time.deltaTime, Space.World);
-        //}
-        //else if (Input.GetKey(KeyCode.D))
-        //{
-        //    playerPrefab.transform.Translate(Vector3.right * 5f * Time.deltaTime, Space.World);
-        //}
+        if (jumpCoolDown > 0)
+        {
+            jumpCoolDown -= 0.25f;
+        }
     }
 }

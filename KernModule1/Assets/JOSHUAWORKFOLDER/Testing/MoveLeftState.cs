@@ -28,6 +28,10 @@ public class MoveLeftState : IState
 
     public void RunMoveLeft(Player player)
     {
+        //if (player.jumpCoolDown > 0)
+        //{
+        //    player.jumpCoolDown -= 0.2f;
+        //}
         player.playerPrefab.transform.Translate(Vector3.left * 5f * Time.deltaTime, Space.World);
     }
 }
