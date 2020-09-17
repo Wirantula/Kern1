@@ -7,9 +7,10 @@ public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
     public GameObject StalactietPrefab;
     GameObject instance;
     Queue<GameObject> instances = new Queue<GameObject>();
+    Vector3 startlocation;
     void Start()
     {
-       
+        startlocation = this.gameObject.transform.position;
     }
 
     void Update()
@@ -17,7 +18,7 @@ public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
 
-            instance = Instantiate(StalactietPrefab, new Vector3(CreateRandomBetween (-5,7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), StalactietPrefab.transform.rotation);
+            instance = Instantiate(StalactietPrefab, startlocation + new Vector3( CreateRandomBetween(-5,7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), StalactietPrefab.transform.rotation);
             instances.Enqueue(instance);
         }
         if(instances.Count >= 10)
