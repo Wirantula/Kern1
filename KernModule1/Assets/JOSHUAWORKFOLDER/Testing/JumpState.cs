@@ -8,11 +8,11 @@ public class JumpState : IState
     {
         RunJump(player);
 
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    return player.jumpState;
-        //}
-        //else 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            return player.jumpState;
+        }
+        else
         if (Input.GetKey(KeyCode.A))
         {
             return player.moveLeftState;
@@ -25,6 +25,7 @@ public class JumpState : IState
         {
             return player.idleState;
         }
+        //return this;
     }
 
     public void RunJump(Player player)

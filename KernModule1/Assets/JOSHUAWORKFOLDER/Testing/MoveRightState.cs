@@ -24,6 +24,7 @@ public class MoveRightState : IState
         {
             return player.idleState;
         }
+        //return this;
     }
 
     public void RunMoveRight(Player player)

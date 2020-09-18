@@ -13,6 +13,7 @@ public class Player
     public MoveLeftState moveLeftState = new MoveLeftState();
     public MoveRightState moveRightState = new MoveRightState();
     public float jumpCoolDown = 10f;
+    //public FiniteStateMachine _fsm;
 
     private IState currentState;
 
@@ -28,6 +29,10 @@ public class Player
     public void Init()
     {
         currentState = idleState;
+        //_fsm = new FiniteStateMachine(this);
+        //_fsm.AddState(new JumpState());
+        //_fsm.AddState(new MoveLeftState());
+        //_fsm.AddState(new MoveRightState());
     }
 
     public void Move()

@@ -7,12 +7,12 @@ public class IdleState : IState
     public IState RunState(Player player)
     {
         RunIdle(player);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             return player.jumpState;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else
+        if (Input.GetKey(KeyCode.A))
         {
             return player.moveLeftState;
         }
@@ -24,6 +24,7 @@ public class IdleState : IState
         {
             return player.idleState;
         }
+        //return this;
     }
 
     public void RunIdle(Player player)
