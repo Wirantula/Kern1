@@ -7,13 +7,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     public GameObject spawn;
+    ObjectPool voorwerp = new ObjectPool();
     //----------StateMachine Environment---------------\\
     StateMachine Envoirment;
     Dictionary<System.Type, State> list;
     //-------------------------------------------------\\
     private void Awake()
     {
-
+        voorwerp.Pools = new List<ObjectPool.Pool>();
+        voorwerp.execution();
     }
 
     void Start()
@@ -55,12 +57,10 @@ public class GameManager : MonoBehaviour
 
      public void ObjectPoolCall()
     {
-       // ObjectPool.Instance.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-5, 7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), new Quaternion(0, 0, 0, 0));
-        ObjectPool voorwerp = new ObjectPool();
-        voorwerp.Pools = new List<ObjectPool.Pool>();
-        voorwerp.PoolDictionary.Add("",spawn);
+        // ObjectPool.Instance.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-5, 7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), new Quaternion(0, 0, 0, 0));
+        voorwerp.FillPool(1);
         voorwerp.execution();
-        voorwerp.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-5, 7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), new Quaternion(0, 0, 0, 0));
+        voorwerp.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-50, 70), CreateRandomBetween(40, 70), CreateRandomBetween(-10, -20)), new Quaternion(0,CreateRandomBetween(-10, -20), 0, 0));
     }
     public void Spawner(GameObject spawn)
     {

@@ -15,7 +15,6 @@ public class EnvoirmentStateTwo : State
     int FpsToSec = 50;
     int MonoSeconds = 0;
     int eventtime = 10;
-    ObjectPool stalctieten = ObjectPool.Instance;
 
     public EnvoirmentStateTwo()
     {
@@ -42,7 +41,7 @@ public class EnvoirmentStateTwo : State
         MonoTime += 1;
         if(MonoTime == FpsToSec)
         {
-            Debug.Log(MonoSeconds + "State 2");
+            Debug.Log(MonoSeconds);
             FpsToSec+=50;
             MonoSeconds++;
 
