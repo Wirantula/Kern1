@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveRightState : IState
 {
+
     public IState RunState(Player player)
     {
         RunMoveRight(player);
@@ -28,10 +29,7 @@ public class MoveRightState : IState
 
     public void RunMoveRight(Player player)
     {
-        //if (player.jumpCoolDown > 0)
-        //{
-        //    player.jumpCoolDown -= 0.2f;
-        //}
         player.playerPrefab.transform.Translate(Vector3.right * 5f * Time.deltaTime, Space.World);
     }
+
 }

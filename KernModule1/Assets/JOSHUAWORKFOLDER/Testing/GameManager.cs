@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    
     [SerializeField]
-    private GameObject prefab;
+    private GameObject _playerPrefab;
+
+    Action playerGotHitAction;
 
     //initializing game
     private void Awake()
@@ -16,12 +20,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //instiate player script en prefab
-        prefab.transform.position = new Vector3(0, 0, 0);
-        GameObject playerPrefab = Instantiate(prefab, transform);
+
+        _playerPrefab.transform.position = new Vector3(0, 0, 0);
+        GameObject playerPrefab = Instantiate(_playerPrefab, transform);
         Player p = new Player(playerPrefab);
         EventManager.InvokeEvent(EventType.ON_STARTUP_TICK);
 
+        playerGotHitAction += playerDead;
+        EventManager.AddListener(EventType.ON_HIT, playerGotHitAction);
     }
 
     // Update is called once per frame
@@ -33,7 +41,15 @@ public class GameManager : MonoBehaviour
     //fixed update for time dependend actions
     private void FixedUpdate()
     {
+
         //Creert update tick met event
+
         EventManager.InvokeEvent(EventType.ON_UPDATE_TICK);
     }
+
+    private void playerDead()
+    {
+        //add code for player being hit or dead
+    }
+
 }

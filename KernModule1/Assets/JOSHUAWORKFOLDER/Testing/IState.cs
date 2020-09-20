@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IState
 {
+
     IState RunState(Player player);
+
 }
