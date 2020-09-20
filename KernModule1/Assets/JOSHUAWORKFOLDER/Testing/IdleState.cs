@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IdleState : IState
 {
+
     public IState RunState(Player player)
     {
         RunIdle(player);
@@ -24,14 +25,10 @@ public class IdleState : IState
         {
             return player.idleState;
         }
-        //return this;
     }
 
     public void RunIdle(Player player)
     {
-        //if(player.jumpCoolDown > 0)
-        //{
-        //    player.jumpCoolDown -= 0.2f;
-        //}
     }
+
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JumpState : IState
 {
+
     public IState RunState(Player player)
     {
         RunJump(player);
@@ -25,21 +26,15 @@ public class JumpState : IState
         {
             return player.idleState;
         }
-        //return this;
     }
 
     public void RunJump(Player player)
     {
-        //if (player.jumpCoolDown > 0)
-        //{
-        //    player.jumpCoolDown -= 0.2f;
-        //}
-        //else 
         if(player.jumpCoolDown <= 0)
         {
             player.playerPrefab.transform.position += new Vector3(0, 5f, 0);
             player.jumpCoolDown = 10f;
         }
-        
     }
+
 }
