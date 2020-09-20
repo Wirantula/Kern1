@@ -37,7 +37,7 @@ public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!! //des
     }
     public int CreateRandomBetween(int a,int b)
     {
-        int getrandom = Random.RandomRange(a,b);
+        int getrandom = Random.Range(a,b);
         
         return getrandom;
     }

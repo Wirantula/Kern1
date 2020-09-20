@@ -23,10 +23,12 @@ public class StateMachine
     }
     public void OnUpdate() //get update method from a state
     {
+        
         if (currentstate?.OnUpdate() == false)
         {
+            currentstate.OnEnter();
             currentstate = states[currentstate.givenextstate()];
-            Debug.Log("aaahh wiep");
+            Debug.Log("Switching");
         }
     }
     public void AddState(State state)

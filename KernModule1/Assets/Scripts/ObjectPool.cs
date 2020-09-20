@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectPool
 {
+    [System.Serializable]
     public class Pool
     {
         public string name = "stalactiet";
@@ -17,7 +18,7 @@ public class ObjectPool
     #region Singleton
     public static ObjectPool Instance;
 
-    private void awake()
+    public void awake()
     {
         Instance = this;
     }
@@ -31,16 +32,19 @@ public class ObjectPool
             Queue<GameObject> objectpool = new Queue<GameObject>();
             for (int i = 0; i < item.Size; i++)
             {
-                
+                Debug.Log("objectpool");   
                 GameObject Stalactiet = new GameObject(); //moet nog geinstantiate worden :(
+                GameManager origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
+                origin.Spawner(Stalactiet);
                 Stalactiet.SetActive(false);
                 objectpool.Enqueue(Stalactiet);
             }
             PoolDictionary.Add("String", objectpool);
-        }      
+        }
     }
     public GameObject SpawnFromPool (string name,Vector3 position, Quaternion rotation)
     {
+        Debug.Log("start spawn");
         if (!PoolDictionary.ContainsKey(name))
         { 
             return null;

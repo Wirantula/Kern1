@@ -15,6 +15,7 @@ public class EnvoirmentStateTwo : State
     int FpsToSec = 50;
     int MonoSeconds = 0;
     int eventtime = 10;
+    ObjectPool stalctieten = ObjectPool.Instance;
 
     public EnvoirmentStateTwo()
     {
@@ -29,15 +30,15 @@ public class EnvoirmentStateTwo : State
          * - stalactieten laten vallen
          * - camera shake * cave status(gebaseerd op tijd)
           */
-        
-
-        LevelActiveTimer(); //starts the timer of level duration
+        // LevelActiveTimer(); //starts the timer of level duration
+        //stalctieten.awake();
+        //stalctieten.execution();
     }
     public override bool OnUpdate()
     {
-        //  Debug.Log("Update started");
-        //  InitTimer();
 
+        // stalctieten.SpawnFromPool("stalc", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+     
         MonoTime += 1;
         if(MonoTime == FpsToSec)
         {
@@ -45,12 +46,9 @@ public class EnvoirmentStateTwo : State
             FpsToSec+=50;
             MonoSeconds++;
 
-            //TODO: spawn stalactieten elke seconden
-            //ObjectPool.Instance.SpawnFromPool("stalc",new Vector3(0,0,0), new Quaternion(0,0,0,0))
-
-            ObjectPool stalctieten = ObjectPool.Instance;
-            stalctieten.SpawnFromPool("stalc",new Vector3(0,0,0), new Quaternion(0,0,0,0));
-;
+            //spawn stalactieten elke seconden
+            GameManager origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
+            origin.ObjectPoolCall();
         }
         if (MonoSeconds == eventtime)
         {
