@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
+public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!! //destroy en 
 {
     public GameObject StalactietPrefab;
     GameObject instance;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
+using System;
 public abstract class State
 {
     //does a state need a constructor?
@@ -10,11 +9,12 @@ public abstract class State
     //{
     //    this.owner = owner;
     //}
-    protected StateMachine owner;
+    public  StateMachine owner;
     public abstract void OnEnter();
-    public abstract void OnUpdate();
-    public abstract void OnExit();
+    public abstract bool OnUpdate();
 
     public delegate bool Isfinished();
     public Isfinished status;
+
+    public abstract Type givenextstate();
 }

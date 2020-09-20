@@ -5,20 +5,20 @@ using System.IO;
 using System.Timers;
 using System;
 
-public class EnvoirmentIdle : State
+public class EnvoirmentStateTwo : State
 {
     // protected StateMachine owner;
     //  public event EventHandler Tick;
 
-     static int localTime = 0;
+    static int localTime = 0;
     static int MonoTime = 0;
     int FpsToSec = 50;
     int MonoSeconds = 0;
     int eventtime = 10;
 
-    public EnvoirmentIdle(StateMachine owner)
+    public EnvoirmentStateTwo()
     {
-        this.owner = owner;
+     //   this.owner = owner;
     }
     public override void OnEnter()
     {
@@ -33,7 +33,7 @@ public class EnvoirmentIdle : State
 
         LevelActiveTimer(); //starts the timer of level duration
     }
-    public override void OnUpdate()
+    public override bool OnUpdate()
     {
         //  Debug.Log("Update started");
         //  InitTimer();
@@ -41,21 +41,25 @@ public class EnvoirmentIdle : State
         MonoTime += 1;
         if(MonoTime == FpsToSec)
         {
-            Debug.Log(MonoSeconds);
+            Debug.Log(MonoSeconds + "State 2");
             FpsToSec+=50;
             MonoSeconds++;
 
             //TODO: spawn stalactieten elke seconden
+            //ObjectPool.Instance.SpawnFromPool("stalc",new Vector3(0,0,0), new Quaternion(0,0,0,0))
+
+            ObjectPool stalctieten = ObjectPool.Instance;
+            stalctieten.SpawnFromPool("stalc",new Vector3(0,0,0), new Quaternion(0,0,0,0));
+;
         }
-        if(MonoSeconds == eventtime)
+        if (MonoSeconds == eventtime)
         {
             //TODO: add camera shake
-            eventtime += 10; //next event
+           // eventtime += 10; //next event
+            Debug.Log("Changing state");
+            return false;
         }
-    }
-    public override void OnExit()
-    {
-
+        return true;
     }
 
     public void LevelActiveTimer() //creates a timer that is independend of monobehavior update
@@ -75,5 +79,10 @@ public class EnvoirmentIdle : State
         localTime += 1;
         //System.Random a = new System.Random();
        // Debug.Log(localTime);
+    }
+
+    public override Type givenextstate()
+    {
+        return typeof(EnvoirmentStateOne);
     }
 }

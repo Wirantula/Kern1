@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6980940011321383363}
   - component: {fileID: -8052888648884776116}
   - component: {fileID: 4272974003015614464}
+  - component: {fileID: 7824922444357032128}
   m_Layer: 0
   m_Name: stalactietPrefab
   m_TagString: Untagged
@@ -106,8 +107,21 @@ MeshCollider:
   m_GameObject: {fileID: 8709277751167511839}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_Enabled: 0
+  serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: ce07d97b772a7fa42a8f6dc043e4037e, type: 3}
+--- !u!65 &7824922444357032128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709277751167511839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015649766, y: 0.013251568, z: 0.04414071}
+  m_Center: {x: -0.00020699891, y: 0.00068247924, z: -0.02178357}

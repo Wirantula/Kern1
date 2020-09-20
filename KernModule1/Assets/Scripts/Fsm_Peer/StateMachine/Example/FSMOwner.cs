@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSMOwner : MonoBehaviour
+public class FSMOwner //voorbeeld interactie met statemachine
 {
-    EnvoirmentIdle State1;
+    EnvoirmentStateOne State1;
     StateMachine voorbeeldMachine;
+    Dictionary<System.Type, State> list;
     void Start()
     {
-        State1 = new EnvoirmentIdle(voorbeeldMachine); //create states 
-        voorbeeldMachine = new StateMachine(State1); //create statemachine
+        State1 = new EnvoirmentStateOne(); //create states 
+        list.Add(typeof(EnvoirmentStateOne), State1);
+        voorbeeldMachine = new StateMachine(list); //create statemachine
         voorbeeldMachine.OnStart(State1);            //parse states to machine
         
     }
