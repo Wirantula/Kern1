@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
+public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!! //destroy en 
 {
     public GameObject StalactietPrefab;
     GameObject instance;
     Queue<GameObject> instances = new Queue<GameObject>();
+    Vector3 startlocation;
     void Start()
     {
-       
+        startlocation = this.gameObject.transform.position;
     }
 
     void Update()
@@ -17,7 +18,7 @@ public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
 
-            instance = Instantiate(StalactietPrefab, new Vector3(CreateRandomBetween (-5,7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), StalactietPrefab.transform.rotation);
+            instance = Instantiate(StalactietPrefab, startlocation + new Vector3( CreateRandomBetween(-5,7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), StalactietPrefab.transform.rotation);
             instances.Enqueue(instance);
         }
         if(instances.Count >= 10)
@@ -36,7 +37,7 @@ public class Stalactiet : MonoBehaviour //moet uit envorimentidle komen!!!
     }
     public int CreateRandomBetween(int a,int b)
     {
-        int getrandom = Random.RandomRange(a,b);
+        int getrandom = Random.Range(a,b);
         
         return getrandom;
     }
