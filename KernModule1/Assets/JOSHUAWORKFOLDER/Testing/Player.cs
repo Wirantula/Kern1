@@ -6,44 +6,44 @@ using UnityEngine;
 public class Player
 {
 
-    public Action updateActions;
-    public Action setupActions;
-    public GameObject playerPrefab;
+    public Action _updateActions;
+    public Action _setupActions;
+    public GameObject _playerPrefab;
 
     /* I have thought about making the states a singleton
      * making them create a static instance of them selves
      * but I also figured this would miss use the singleton pattern
      */
 
-    public IdleState idleState = new IdleState();
-    public JumpState jumpState = new JumpState();
-    public MoveLeftState moveLeftState = new MoveLeftState();
-    public MoveRightState moveRightState = new MoveRightState();
-    public float jumpCoolDown = 10f;
-    public float rayCastTimer = 20f;
-
+    public IdleState _idleState = new IdleState();
+    public JumpState _jumpState = new JumpState();
+    public MoveLeftState _moveLeftState = new MoveLeftState();
+    public MoveRightState _moveRightState = new MoveRightState();
+    public float _jumpCoolDown = 10f;
     //I tried creating a seperate fsm but it would mostly result in more complex code
     //for something that can be done slightly less clean but a lot easier for the system that it is
     //public FiniteStateMachine _fsm;
 
-    private IState currentState;
-    private PlayerInputHandler playerInput;
+    
+    private float _rayCastTimer = 20f;
+    private IState _currentState;
+    private PlayerInputHandler _playerInput;
     private int _lives;
 
     public Player(GameObject prefab)
     {
-        playerPrefab = prefab;
-        updateActions += PlayerUpdate;
-        setupActions += Init;
-        EventManager.AddListener(EventType.ON_UPDATE_TICK, updateActions);
-        EventManager.AddListener(EventType.ON_STARTUP_TICK, setupActions);
+        _playerPrefab = prefab;
+        _updateActions += PlayerUpdate;
+        _setupActions += Init;
+        EventManager.AddListener(EventType.ON_UPDATE_TICK, _updateActions);
+        EventManager.AddListener(EventType.ON_STARTUP_TICK, _setupActions);
     }
 
     public void Init()
     {
         _lives = 3;
-        currentState = idleState;
-        playerInput = new PlayerInputHandler(moveLeftState, moveRightState, jumpState, this);
+        _currentState = _idleState;
+        _playerInput = new PlayerInputHandler(_moveLeftState, _moveRightState, _jumpState, this);
         //seperate fsm removed due to not necessary complexity
         //_fsm = new FiniteStateMachine(this);
         //_fsm.AddState(new JumpState());
@@ -54,28 +54,28 @@ public class Player
 
     public void PlayerUpdate()
     {
-        playerInput.HandleInput();
-        if (jumpCoolDown > 0)
+        _playerInput.HandleInput();
+        if (_jumpCoolDown > 0)
         {
-            jumpCoolDown -= 0.25f;
+            _jumpCoolDown -= 0.25f;
         }
 
-        if(rayCastTimer <= 0)
+        if(_rayCastTimer <= 0)
         {
             ExecuteRaycast();
         }
-        else if (rayCastTimer > 0)
+        else if (_rayCastTimer > 0)
         {
-            rayCastTimer -= 0.25f;
+            _rayCastTimer -= 0.25f;
         }
     }
 
     public void ExecuteRaycast()
     {
         RaycastHit hit;
-        if(Physics.Raycast(playerPrefab.transform.position, playerPrefab.transform.up, out hit))
+        if(Physics.Raycast(_playerPrefab.transform.position, _playerPrefab.transform.up, out hit))
         {
-            if(hit.collider.transform.position.y - playerPrefab.transform.position.y <= 2.5f)
+            if(hit.collider.transform.position.y - _playerPrefab.transform.position.y <= 2.5f)
             {
                 _lives--;
                 Debug.Log("You have lost a life");
@@ -85,7 +85,7 @@ public class Player
                 }
             }
         }
-        rayCastTimer = 20f;
+        _rayCastTimer = 20f;
     }
 
 }

@@ -49,7 +49,7 @@ public class ObjectPool
                 objectpool.Enqueue(obj);
                
             }
-            PoolDictionary.Add(origin.stalac.tag, objectpool);
+            PoolDictionary.Add(origin._stalac.tag, objectpool);
         }
     }
     public GameObject SpawnFromPool (string name,Vector3 position, Quaternion rotation)

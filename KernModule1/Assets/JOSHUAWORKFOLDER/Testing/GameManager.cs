@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
-    
-    //private GameObject prefab;
 
-    public GameObject stalac;
+    //private GameObject prefab;
+    public GameObject _stalac;
     [SerializeField]
     private GameObject _playerPrefab;
-    Action playerGotHitAction;
+    Action _playerDeadAction;
+    Action _playerHitAction;
 
     //----------StateMachine Environment---------------\\
     StateMachine Envoirment;
@@ -63,8 +62,9 @@ public class GameManager : MonoBehaviour
 
         // EventManager.AddListener(EventType.ON_STARTUP_TICK, )
 
-        playerGotHitAction += playerDead;
-        EventManager.AddListener(EventType.ON_PLAYER_DEATH, playerGotHitAction);
+        _playerDeadAction += PlayerDead;
+        EventManager.AddListener(EventType.ON_PLAYER_HIT, _playerHitAction);
+        EventManager.AddListener(EventType.ON_PLAYER_DEATH, _playerDeadAction);
 
     }
 
@@ -88,15 +88,15 @@ public class GameManager : MonoBehaviour
     public void Spawner(GameObject spawn)
     {
         Instantiate(spawn);
-        stalac = new GameObject();
-        Instantiate(stalac);
+        _stalac = new GameObject();
+        Instantiate(_stalac);
         DeadOnCollision instance = new DeadOnCollision();
-        instance.init(stalac);
+        instance.init(_stalac);
         instance.LocalUpdate(GameObject.FindGameObjectsWithTag("colidable"));
     }
 
 
-    private void playerDead()
+    private void PlayerDead()
     {
         //add code for player being hit or dead
         Debug.Log("you died, game over");

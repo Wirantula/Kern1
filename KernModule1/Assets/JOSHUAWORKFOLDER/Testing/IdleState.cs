@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class IdleState : IState
 {
+
     public IState RunState(Player player)
     {
-        return player.idleState;
+        return player._idleState;
     }
 
     /* first state version completely overriden by the command pattern
@@ -32,4 +33,5 @@ public class IdleState : IState
             }
        }
      */
+
 }

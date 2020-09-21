@@ -13,11 +13,12 @@ public class MoveLeftState : ICommand
 
     public void RunMoveLeft(Player player)
     {
-        player.playerPrefab.transform.Translate(Vector3.left * 5f * Time.deltaTime, Space.World);
+        player._playerPrefab.transform.Translate(Vector3.left * 5f * Time.deltaTime, Space.World);
     }
 
     public void Execute(Player player)
     {
         RunMoveLeft(player);
     }
+
 }

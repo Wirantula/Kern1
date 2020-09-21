@@ -41,7 +41,7 @@ public class EnvoirmentStateTwo : State
         Debug.Log("entering stage 2");
          origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
 
-        stalacpool.execution(origin.Pools,origin.stalac,origin);
+        stalacpool.execution(origin.Pools,origin._stalac,origin);
     }
     public override bool OnUpdate()
     {
@@ -55,7 +55,7 @@ public class EnvoirmentStateTwo : State
             MonoSeconds++;
 
             //spawn stalactieten elke seconden
-            stalacpool.SpawnFromPool(origin.stalac.name, new Vector3(RND(0, 70), RND(0, 70), RND(-10, -20)), new Quaternion(0, RND(-10, -20), 0, 0));
+            stalacpool.SpawnFromPool(origin._stalac.name, new Vector3(RND(0, 70), RND(0, 70), RND(-10, -20)), new Quaternion(0, RND(-10, -20), 0, 0));
         }
         if (MonoSeconds == eventtime)
         {
