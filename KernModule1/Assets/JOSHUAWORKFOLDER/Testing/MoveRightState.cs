@@ -13,7 +13,7 @@ public class MoveRightState : ICommand
 
     public void RunMoveRight(Player player)
     {
-        player.playerPrefab.transform.Translate(Vector3.right * 5f * Time.deltaTime, Space.World);
+        player._playerPrefab.transform.Translate(Vector3.right * 5f * Time.deltaTime, Space.World);
     }
 
     public void Execute(Player player)

@@ -6,31 +6,31 @@ using UnityEngine;
 public static class EventManager
 {
 
-    private static Dictionary<EventType, System.Action> eventDictionary = new Dictionary<EventType, System.Action>();
+    private static Dictionary<EventType, System.Action> _eventDictionary = new Dictionary<EventType, System.Action>();
 
     public static void AddListener(EventType eventType, System.Action function)
     {
-        if (!eventDictionary.ContainsKey(eventType))
+        if (!_eventDictionary.ContainsKey(eventType))
         {
-            eventDictionary.Add(eventType, null);
+            _eventDictionary.Add(eventType, null);
         }
-        eventDictionary[eventType] += function;
+        _eventDictionary[eventType] += function;
     }
 
     public static void RemoveListener(EventType eventType, System.Action function)
     {
-        if (eventDictionary.ContainsKey(eventType) && eventDictionary[eventType] != null)
+        if (_eventDictionary.ContainsKey(eventType) && _eventDictionary[eventType] != null)
         {
-            eventDictionary[eventType] -= function;
+            _eventDictionary[eventType] -= function;
         }
     }
 
     public static void InvokeEvent(EventType eventType)
     {
         //eventDictionary[eventType]?.Invoke();
-        if(eventDictionary[eventType] != null)
+        if(_eventDictionary[eventType] != null)
         {
-            eventDictionary[eventType].Invoke();
+            _eventDictionary[eventType].Invoke();
         }
     }
 
