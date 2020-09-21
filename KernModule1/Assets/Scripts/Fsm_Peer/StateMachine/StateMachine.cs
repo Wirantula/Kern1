@@ -5,15 +5,15 @@ using UnityEngine;
 public class StateMachine
 {
     private State currentstate;
+    protected int index = 0;
     private Dictionary<System.Type, State> states = new Dictionary<System.Type, State>(); //list of availible states
 
-   // StateMachine owner;
-    public StateMachine(State RecievedState) //constructer for state machine
+    public StateMachine(Dictionary<System.Type, State> list) //constructer for state machine
     {
         //geef states mee aan de statemachine 
         //maak een instance aan, run update vanuit monobehavior
         //  this.owner = owner;
-        AddState(RecievedState);
+        states = list;
     }
 
     public void OnStart(State state) //init a state
@@ -23,7 +23,14 @@ public class StateMachine
     }
     public void OnUpdate() //get update method from a state
     {
-        currentstate?.OnUpdate();
+        
+        if (currentstate?.OnUpdate() == false)
+        {
+            
+            currentstate = states[currentstate.givenextstate()];
+            currentstate.OnEnter();
+            Debug.Log("Switching");
+        }
     }
     public void AddState(State state)
     {
@@ -31,22 +38,5 @@ public class StateMachine
         Debug.Log(state + " added to " + states.ToString());
     }
 
-    public void StateUpdate()
-    {
-        //early return
-        if (currentstate == null) return;
-       // bool status = owner.currentstate.status(); //listens to the state event status
-
-        //update state
-        //currentstate.Run();
-
-        //foreach (currentstate t in currentstate.Transitions)
-        //{
-        //    if (t.condition())
-        //    {
-        //        SetState(StatePool.GetState(t.target));
-        //    }
-        //}
-    }
 }
 

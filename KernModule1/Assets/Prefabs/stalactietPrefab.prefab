@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6980940011321383363}
   - component: {fileID: -8052888648884776116}
   - component: {fileID: 4272974003015614464}
+  - component: {fileID: 7824922444357032128}
   m_Layer: 0
   m_Name: stalactietPrefab
-  m_TagString: Untagged
+  m_TagString: stalactietPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8709277751167511839}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -3.1849, y: 2.2194, z: -1.4947}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -30, y: 60, z: -16}
   m_LocalScale: {x: 28.738085, y: 28.738085, z: 28.738085}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,8 +107,21 @@ MeshCollider:
   m_GameObject: {fileID: 8709277751167511839}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_Enabled: 0
+  serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: ce07d97b772a7fa42a8f6dc043e4037e, type: 3}
+--- !u!65 &7824922444357032128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8709277751167511839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015649766, y: 0.013251568, z: 0.04414071}
+  m_Center: {x: -0.00020699891, y: 0.00068247924, z: -0.02178357}

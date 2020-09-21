@@ -5,20 +5,23 @@ using System.IO;
 using System.Timers;
 using System;
 
-public class EnvoirmentIdle : State
+public class EnvoirmentStateTwo : State
 {
     // protected StateMachine owner;
     //  public event EventHandler Tick;
 
-     static int localTime = 0;
+    static int localTime = 0;
     static int MonoTime = 0;
     int FpsToSec = 50;
     int MonoSeconds = 0;
     int eventtime = 10;
 
-    public EnvoirmentIdle(StateMachine owner)
+    GameManager origin;
+    ObjectPool stalacpool = new ObjectPool();
+
+    public EnvoirmentStateTwo()
     {
-        this.owner = owner;
+     //   this.owner = owner;
     }
     public override void OnEnter()
     {
@@ -29,14 +32,20 @@ public class EnvoirmentIdle : State
          * - stalactieten laten vallen
          * - camera shake * cave status(gebaseerd op tijd)
           */
-        
+        // LevelActiveTimer(); //starts the timer of level duration
+        //stalctieten.awake();
+        //stalctieten.execution();
 
-        LevelActiveTimer(); //starts the timer of level duration
+        //stalacpool.Pools = new List<ObjectPool.Pool>();
+        //stalacpool.FillPool(1, "stalactietPrefab(Clone)");
+        Debug.Log("entering stage 2");
+         origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
+
+        stalacpool.execution(origin.Pools,origin.stalac,origin);
     }
-    public override void OnUpdate()
+    public override bool OnUpdate()
     {
-        //  Debug.Log("Update started");
-        //  InitTimer();
+        // stalctieten.SpawnFromPool("stalc", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         MonoTime += 1;
         if(MonoTime == FpsToSec)
@@ -45,17 +54,17 @@ public class EnvoirmentIdle : State
             FpsToSec+=50;
             MonoSeconds++;
 
-            //TODO: spawn stalactieten elke seconden
+            //spawn stalactieten elke seconden
+            stalacpool.SpawnFromPool(origin.stalac.name, new Vector3(RND(0, 70), RND(0, 70), RND(-10, -20)), new Quaternion(0, RND(-10, -20), 0, 0));
         }
-        if(MonoSeconds == eventtime)
+        if (MonoSeconds == eventtime)
         {
             //TODO: add camera shake
-            eventtime += 10; //next event
+           // eventtime += 10; //next event
+            Debug.Log("Changing state");
+            return false;
         }
-    }
-    public override void OnExit()
-    {
-
+        return true;
     }
 
     public void LevelActiveTimer() //creates a timer that is independend of monobehavior update
@@ -75,5 +84,17 @@ public class EnvoirmentIdle : State
         localTime += 1;
         //System.Random a = new System.Random();
        // Debug.Log(localTime);
+    }
+
+    public override Type givenextstate()
+    {
+        return typeof(EnvoirmentStateOne);
+    }
+
+    public int RND(int a, int b)
+    {
+        int getrandom = UnityEngine.Random.Range(a, b);
+
+        return getrandom;
     }
 }
