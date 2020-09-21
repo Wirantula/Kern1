@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveRightState : IState , ICommand
+public class MoveRightState : ICommand
 {
 
-    public IState RunState(Player player)
-    {
-        //RunMoveRight(player);
-        return player.idleState;
-    }
+    //public IState RunState(Player player)
+    //{
+    //    RunMoveRight(player);
+    //    return player.idleState;
+    //}
 
     public void RunMoveRight(Player player)
     {

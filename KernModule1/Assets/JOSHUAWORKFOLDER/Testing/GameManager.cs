@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,13 +15,11 @@ public class GameManager : MonoBehaviour
     //initializing game
     private void Awake()
     {
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         //instiate player script en prefab
 
         _playerPrefab.transform.position = new Vector3(0, 0, 0);

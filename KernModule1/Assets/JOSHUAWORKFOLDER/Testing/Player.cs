@@ -28,7 +28,7 @@ public class Player
 
     private IState currentState;
     private PlayerInputHandler playerInput;
-    private int Lifes;
+    private int _lives;
 
     public Player(GameObject prefab)
     {
@@ -41,7 +41,7 @@ public class Player
 
     public void Init()
     {
-        Lifes = 3;
+        _lives = 3;
         currentState = idleState;
         playerInput = new PlayerInputHandler(moveLeftState, moveRightState, jumpState, this);
         //seperate fsm removed due to not necessary complexity
@@ -77,8 +77,9 @@ public class Player
         {
             if(hit.collider.transform.position.y - playerPrefab.transform.position.y <= 2.5f)
             {
-                Lifes--;
-                if (Lifes <= 0)
+                _lives--;
+                Debug.Log("You have lost a life");
+                if (_lives <= 0)
                 {
                     EventManager.InvokeEvent(EventType.ON_PLAYER_DEATH);
                 }

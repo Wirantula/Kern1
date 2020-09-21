@@ -8,4 +8,28 @@ public class IdleState : IState
     {
         return player.idleState;
     }
+
+    /* first state version completely overriden by the command pattern
+     * public IState RunState(Player player)
+     * {
+            RunIdle(player);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                return player.jumpState;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                return player.moveLeftState;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                return player.moveRightState;
+            }
+            else
+            {
+                return player.idleState;
+            }
+       }
+     */
 }
