@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         EventManager.InvokeEvent(EventType.ON_STARTUP_TICK);
 
         playerGotHitAction += playerDead;
-        EventManager.AddListener(EventType.ON_HIT, playerGotHitAction);
+        EventManager.AddListener(EventType.ON_PLAYER_DEATH, playerGotHitAction);
     }
 
     // Update is called once per frame
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private void playerDead()
     {
         //add code for player being hit or dead
+        Debug.Log("you died, game over");
+        //make the game return
     }
 
 }
