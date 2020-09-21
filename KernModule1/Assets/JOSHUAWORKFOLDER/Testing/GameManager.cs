@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,15 +29,17 @@ public class GameManager : MonoBehaviour
     public List<Pool> Pools;
     private void Awake()
     {
-       
+
     }
 
     void Start()
     {
+
         //StateList = new Dictionary<System.Type, State>();
         //instantiate player en prefab
         //prefab.transform.position = new Vector3(0, 0, 0);
         //GameObject playerPrefab = Instantiate(prefab, transform);
+
 
         //instiate player script en prefab
 

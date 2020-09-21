@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : IState , ICommand
+public class JumpState : ICommand
 {
 
-    public IState RunState(Player player)
-    {
-        RunJump(player);
-        return player.idleState;
-    }
+    //public IState RunState(Player player)
+    //{
+    //    RunJump(player);
+    //    return player.idleState;
+    //}
 
     public void RunJump(Player player)
     {
@@ -22,6 +22,6 @@ public class JumpState : IState , ICommand
 
     public void Execute(Player player)
     {
-        RunState(player);
+        RunJump(player);
     }
 }
