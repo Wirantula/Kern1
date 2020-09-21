@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    public class Pool
-    {
-        public string name;
-        public GameObject stalactiet;
-        public int Size = 15;
-    }
-    public List<Pool> Pools; //wordt normaal gesproken gevuld door unity met gameobjects
+    //public class Pool
+    //{
+    //    public string name;
+    //    public GameObject stalactiet;
+    //    public int Size = 15;
+    //}
+    public List<GameManager.Pool> Pools; //wordt normaal gesproken gevuld door unity met gameobjects
     public Dictionary<string,Queue<GameObject>> PoolDictionary;
 
     #region Singleton
@@ -22,48 +22,55 @@ public class ObjectPool
         Instance = this;
     }
     #endregion
-    public void FillPool(int amount)
+    //public void FillPool(int amount, string Name)
+    //{
+    //    for (int i = 0; i < amount; i++)
+    //    {
+    //        Pool pool = new Pool();
+    //        pool.name = Name;
+    //        Pools.Add(pool);
+    //    }
+    //}
+    public void execution(List<GameManager.Pool> fillpools, GameObject obj,GameManager origin)
     {
-        for (int i = 0; i < amount; i++)
-        {
-            Pools.Add(new Pool());
-        }
-    }
-    public void execution()
-    {
+        Pools = fillpools;
         PoolDictionary = new Dictionary<string, Queue<GameObject>>(); //instantie
 
-        foreach (Pool item in Pools)
+        foreach (GameManager.Pool pool in Pools)
         {
             Queue<GameObject> objectpool = new Queue<GameObject>();
-            for (int i = 0; i < item.Size; i++)
+            for (int i = 0; i < pool.Size; i++)
             {
-                item.name = i.ToString();
-                GameManager origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
-                GameObject Stalactiet = origin.spawn;
-                origin.Spawner(Stalactiet);
-                Stalactiet.SetActive(false);
-                objectpool.Enqueue(Stalactiet);
+                // item.name = "stalactietPrefab(Clone)" + i;
+                
+               
+                origin.Spawner(obj);
+                obj.SetActive(false);
+                objectpool.Enqueue(obj);
+               
             }
-            PoolDictionary.Add(item.name, objectpool);
+            PoolDictionary.Add(origin.stalac.tag, objectpool);
         }
     }
     public GameObject SpawnFromPool (string name,Vector3 position, Quaternion rotation)
     {
-        Debug.Log("start spawn");
+        Debug.Log(name);
+        //"stalactietPrefab"
+
         if (!PoolDictionary.ContainsKey(name))
-        { 
+        {
             return null;
         }
 
-        GameObject stalactiet = PoolDictionary[name].Dequeue();
+        Debug.Log("dequeue");
+        GameObject objecttospawn = PoolDictionary[name].Dequeue();
 
-        stalactiet.SetActive(true);
-        stalactiet.transform.position = position;
-        stalactiet.transform.rotation = rotation;
+        objecttospawn.SetActive(true);
+        objecttospawn.transform.position = position;
+        objecttospawn.transform.rotation = rotation;
 
-        PoolDictionary[name].Enqueue(stalactiet);
+        PoolDictionary[name].Enqueue(objecttospawn);
 
-        return stalactiet;
+        return objecttospawn;
     }
 }

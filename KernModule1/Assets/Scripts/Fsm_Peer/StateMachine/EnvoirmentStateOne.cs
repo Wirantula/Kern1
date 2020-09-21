@@ -13,7 +13,7 @@ public class EnvoirmentStateOne : State
     static int MonoTime = 0;
     int FpsToSec = 50;
     int MonoSeconds = 0;
-    int eventtime = 5;
+    int eventtime = 2;
     
     public EnvoirmentStateOne()
     {

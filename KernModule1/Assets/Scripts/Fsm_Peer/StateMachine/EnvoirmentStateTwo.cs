@@ -16,6 +16,9 @@ public class EnvoirmentStateTwo : State
     int MonoSeconds = 0;
     int eventtime = 10;
 
+    GameManager origin;
+    ObjectPool stalacpool = new ObjectPool();
+
     public EnvoirmentStateTwo()
     {
      //   this.owner = owner;
@@ -32,12 +35,18 @@ public class EnvoirmentStateTwo : State
         // LevelActiveTimer(); //starts the timer of level duration
         //stalctieten.awake();
         //stalctieten.execution();
+
+        //stalacpool.Pools = new List<ObjectPool.Pool>();
+        //stalacpool.FillPool(1, "stalactietPrefab(Clone)");
+        Debug.Log("entering stage 2");
+         origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
+
+        stalacpool.execution(origin.Pools,origin.stalac,origin);
     }
     public override bool OnUpdate()
     {
-
         // stalctieten.SpawnFromPool("stalc", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
-     
+
         MonoTime += 1;
         if(MonoTime == FpsToSec)
         {
@@ -46,8 +55,7 @@ public class EnvoirmentStateTwo : State
             MonoSeconds++;
 
             //spawn stalactieten elke seconden
-            GameManager origin = GameObject.Find("Scriptholder").GetComponent<GameManager>();
-            origin.ObjectPoolCall();
+            stalacpool.SpawnFromPool(origin.stalac.name, new Vector3(RND(0, 70), RND(0, 70), RND(-10, -20)), new Quaternion(0, RND(-10, -20), 0, 0));
         }
         if (MonoSeconds == eventtime)
         {
@@ -81,5 +89,12 @@ public class EnvoirmentStateTwo : State
     public override Type givenextstate()
     {
         return typeof(EnvoirmentStateOne);
+    }
+
+    public int RND(int a, int b)
+    {
+        int getrandom = UnityEngine.Random.Range(a, b);
+
+        return getrandom;
     }
 }

@@ -6,21 +6,29 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefab;
-    public GameObject spawn;
-    ObjectPool voorwerp = new ObjectPool();
+    public GameObject stalac;
+
     //----------StateMachine Environment---------------\\
     StateMachine Envoirment;
-    Dictionary<System.Type, State> list;
+    Dictionary<System.Type, State> StateList;
     //-------------------------------------------------\\
+    [System.Serializable]
+    
+    public class Pool
+    {
+        public string tag;
+        public GameObject stalactiet;
+        public int Size = 15;
+    }
+    public List<Pool> Pools;
     private void Awake()
     {
-        voorwerp.Pools = new List<ObjectPool.Pool>();
-        voorwerp.execution();
+       
     }
 
     void Start()
     {
-        list = new Dictionary<System.Type, State>();
+        StateList = new Dictionary<System.Type, State>();
         //instantiate player en prefab
         prefab.transform.position = new Vector3(0, 0, 0);
         GameObject playerPrefab = Instantiate(prefab, transform);
@@ -31,10 +39,10 @@ public class GameManager : MonoBehaviour
 
         // Envoirment
         EnvoirmentStateOne State1 = new EnvoirmentStateOne(); //create state 
-        list.Add(typeof(EnvoirmentStateOne), State1);
+        StateList.Add(typeof(EnvoirmentStateOne), State1);
         EnvoirmentStateTwo State2 = new EnvoirmentStateTwo();
-        list.Add(typeof(EnvoirmentStateTwo), State2);
-        Envoirment = new StateMachine(list); //create statemachine
+        StateList.Add(typeof(EnvoirmentStateTwo), State2);
+        Envoirment = new StateMachine(StateList); //create statemachine
         Envoirment.OnStart(State1);
 
         // EventManager.AddListener(EventType.ON_STARTUP_TICK, )
@@ -55,21 +63,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-     public void ObjectPoolCall()
-    {
-        // ObjectPool.Instance.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-5, 7), CreateRandomBetween(4, 7), CreateRandomBetween(-1, -2)), new Quaternion(0, 0, 0, 0));
-        voorwerp.FillPool(1);
-        voorwerp.execution();
-        voorwerp.SpawnFromPool("stalc", new Vector3(CreateRandomBetween(-50, 70), CreateRandomBetween(40, 70), CreateRandomBetween(-10, -20)), new Quaternion(0,CreateRandomBetween(-10, -20), 0, 0));
-    }
     public void Spawner(GameObject spawn)
     {
         Instantiate(spawn);
+       // stalac = new GameObject();
+       // Instantiate(stalac);
+        DeadOnCollision instance = new DeadOnCollision();
+        instance.init(stalac);
+        instance.LocalUpdate(GameObject.FindGameObjectsWithTag("colidable"));
     }
-    public int CreateRandomBetween(int a, int b)
-    {
-        int getrandom = Random.Range(a, b);
-
-        return getrandom;
-    }
+ 
 }

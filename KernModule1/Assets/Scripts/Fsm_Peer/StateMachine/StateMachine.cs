@@ -26,8 +26,9 @@ public class StateMachine
         
         if (currentstate?.OnUpdate() == false)
         {
-            currentstate.OnEnter();
+            
             currentstate = states[currentstate.givenextstate()];
+            currentstate.OnEnter();
             Debug.Log("Switching");
         }
     }
