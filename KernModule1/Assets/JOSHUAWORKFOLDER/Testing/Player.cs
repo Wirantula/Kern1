@@ -10,7 +10,7 @@ public class Player
     public Action setupActions;
     public GameObject playerPrefab;
 
-    /* I have though about making the states a singleton
+    /* I have thought about making the states a singleton
      * making them create a static instance of them selves
      * but I also figured this would miss use the singleton pattern
      */

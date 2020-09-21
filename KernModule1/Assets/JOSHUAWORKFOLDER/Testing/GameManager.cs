@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     
-    [SerializeField]
-
+    
     //private GameObject prefab;
-    //public GameObject stalac;
+
+    public GameObject stalac;
+    [SerializeField]
     private GameObject _playerPrefab;
     Action playerGotHitAction;
 
@@ -35,10 +36,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        //StateList = new Dictionary<System.Type, State>();
+        StateList = new Dictionary<System.Type, State>();
         //instantiate player en prefab
         //prefab.transform.position = new Vector3(0, 0, 0);
-        //GameObject playerPrefab = Instantiate(prefab, transform);
+        //GameObject _playerPrefab = Instantiate(prefab, transform);
 
 
         //instiate player script en prefab
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
         Player p = new Player(playerPrefab);
 
         EventManager.InvokeEvent(EventType.ON_STARTUP_TICK);
-        // EventManager.AddListener(EventType.ON_STARTUP_TICK,Update); //example listner statemachine (adds update as eventlistner )
+        EventManager.AddListener(EventType.ON_STARTUP_TICK,Update); //example listner statemachine (adds update as eventlistner )
 
         // Envoirment
         EnvoirmentStateOne State1 = new EnvoirmentStateOne(); //create state 
@@ -87,8 +88,8 @@ public class GameManager : MonoBehaviour
     public void Spawner(GameObject spawn)
     {
         Instantiate(spawn);
-       // stalac = new GameObject();
-       // Instantiate(stalac);
+        stalac = new GameObject();
+        Instantiate(stalac);
         DeadOnCollision instance = new DeadOnCollision();
         instance.init(stalac);
         instance.LocalUpdate(GameObject.FindGameObjectsWithTag("colidable"));
