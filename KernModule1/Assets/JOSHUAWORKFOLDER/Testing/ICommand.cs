@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IState
+public interface ICommand
 {
-
-    IState RunState(Player player);
-
+    void Execute(Player player);
 }

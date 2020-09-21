@@ -27,7 +27,11 @@ public static class EventManager
 
     public static void InvokeEvent(EventType eventType)
     {
-        eventDictionary[eventType]?.Invoke();
+        //eventDictionary[eventType]?.Invoke();
+        if(eventDictionary[eventType] != null)
+        {
+            eventDictionary[eventType].Invoke();
+        }
     }
 
 }
