@@ -79,6 +79,7 @@ public class Player
             {
                 _lives--;
                 Debug.Log("You have lost a life");
+                EventManager.InvokeEvent(EventType.ON_PLAYER_HIT);
                 if (_lives <= 0)
                 {
                     EventManager.InvokeEvent(EventType.ON_PLAYER_DEATH);
