@@ -2,29 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveLeftState : IState
+public class MoveLeftState : IState , ICommand
 {
 
     public IState RunState(Player player)
     {
-        RunMoveLeft(player);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            return player.jumpState;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            return player.moveLeftState;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            return player.moveRightState;
-        }
-        else
-        {
-            return player.idleState;
-        }
+        //RunMoveLeft(player);
+        return player.idleState;
     }
 
     public void RunMoveLeft(Player player)
@@ -32,4 +16,8 @@ public class MoveLeftState : IState
         player.playerPrefab.transform.Translate(Vector3.left * 5f * Time.deltaTime, Space.World);
     }
 
+    public void Execute(Player player)
+    {
+        RunMoveLeft(player);
+    }
 }

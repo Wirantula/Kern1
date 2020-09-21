@@ -27,6 +27,8 @@ public class Player
     //public FiniteStateMachine _fsm;
 
     private IState currentState;
+    private PlayerInputHandler playerInput;
+    private int Lifes;
 
     public Player(GameObject prefab)
     {
@@ -39,8 +41,9 @@ public class Player
 
     public void Init()
     {
+        Lifes = 3;
         currentState = idleState;
-
+        playerInput = new PlayerInputHandler(moveLeftState, moveRightState, jumpState, this);
         //seperate fsm removed due to not necessary complexity
         //_fsm = new FiniteStateMachine(this);
         //_fsm.AddState(new JumpState());
@@ -51,7 +54,7 @@ public class Player
 
     public void PlayerUpdate()
     {
-        currentState = currentState.RunState(this);
+        playerInput.HandleInput();
         if (jumpCoolDown > 0)
         {
             jumpCoolDown -= 0.25f;
@@ -69,16 +72,16 @@ public class Player
 
     public void ExecuteRaycast()
     {
-        Debug.Log("i got exec");
         RaycastHit hit;
         if(Physics.Raycast(playerPrefab.transform.position, playerPrefab.transform.up, out hit))
         {
-            Debug.Log("fired ray");
             if(hit.collider.transform.position.y - playerPrefab.transform.position.y <= 2.5f)
             {
-                Debug.DrawRay(playerPrefab.transform.position, playerPrefab.transform.up, Color.black);
-                Debug.Log("I found object");
-                EventManager.InvokeEvent(EventType.ON_HIT);
+                Lifes--;
+                if (Lifes <= 0)
+                {
+                    EventManager.InvokeEvent(EventType.ON_PLAYER_DEATH);
+                }
             }
         }
         rayCastTimer = 20f;

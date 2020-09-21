@@ -7,6 +7,6 @@ public enum EventType
 
     ON_UPDATE_TICK = 0,
     ON_STARTUP_TICK = 1,
-    ON_HIT  = 2,
+    ON_PLAYER_DEATH  = 2,
        
 }

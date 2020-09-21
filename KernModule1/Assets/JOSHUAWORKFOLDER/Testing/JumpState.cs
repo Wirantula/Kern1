@@ -2,30 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : IState
+public class JumpState : IState , ICommand
 {
 
     public IState RunState(Player player)
     {
         RunJump(player);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            return player.jumpState;
-        }
-        else
-        if (Input.GetKey(KeyCode.A))
-        {
-            return player.moveLeftState;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            return player.moveRightState;
-        }
-        else
-        {
-            return player.idleState;
-        }
+        return player.idleState;
     }
 
     public void RunJump(Player player)
@@ -37,4 +20,8 @@ public class JumpState : IState
         }
     }
 
+    public void Execute(Player player)
+    {
+        RunState(player);
+    }
 }
